@@ -1,7 +1,7 @@
-#Dotfiles
+# Dotfiles
 Files to control settings for different tools.
 
-##Programs
+## Programs
 * .bashrc for bash
 * .mostrc for most
 * .vimrc for vim 
