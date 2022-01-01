@@ -29,12 +29,11 @@ set undofile "undo file
 set encoding=utf-8
 set scrolloff=8
 set noshowmode "Turn off old mode line, using airline now
+set signcolumn=yes
 
 "turn syntax on 
 syntax on
 
-"Line number coloring stuff
-:highlight LineNr ctermfg=grey ctermbg=Black
 
 "Number lines return to normal value when in insert mode
 ":augroup numbertoggle
@@ -49,10 +48,10 @@ let g:polyglot_disabled = ['sensible', 'markdown']
 "Source plugins
 call plug#begin('~/.vim/plugged')
     "Colorscheme 
-    Plug 'morhetz/gruvbox'
+    Plug 'gruvbox-community/gruvbox'
 
-    "Auto complete engine
-    Plug 'valloric/youcompleteme'
+    "autocomplete options
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
     "syntax checker
     Plug 'scrooloose/syntastic'
@@ -79,8 +78,15 @@ call plug#end()
 "Sexy colorscheme
 colorscheme gruvbox
 
+"Line number coloring stuff
+highlight LineNr ctermfg=grey ctermbg=Black
+
 "Set space to leader
 let mapleader=" "
+
+"Use tab/S-tab for Coc
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 "Make netrw not suck 
 let g:netrw_browse_split = 4
@@ -136,8 +142,11 @@ noremap <leader>se :SyntasticToggleMode <CR>
 noremap <leader>fs :wincmd v<bar> :Ex <bar> :wincmd H <CR> :vertical resize 20 <CR>
 
 "youcompleteme remaps
-noremap <leader>gd :YcmCompleter GoTo <CR>
-noremap <leader>cp :pclose <CR>
+"noremap <leader>gd :YcmCompleter GoTo <CR>
+"noremap <leader>cp :pclose <CR>
+"show info on what's under the cursor
+"let g:ycm_auto_hover=1
+"nmap <leader>D <plug>(YCMHover)
 
 "vimscript wizardry to make copying nice
 let &t_SI .= "\<Esc>[?2004h"
@@ -168,10 +177,6 @@ nnoremap <expr> j (v:count > 5 ? "m'" . v:count : "") . 'j'
 "FZF remap
 nnoremap <leader>ff :<C-u>FZF --reverse --preview batcat\ --color=always\ --style=numbers\ --line-range=:500\ {}<CR>
 nnoremap <leader>fv <C-w><C-v>:<C-u>FZF<CR>
-
-"YCM show info on what's under the cursor
-"let g:ycm_auto_hover=1
-nmap <leader>D <plug>(YCMHover)
 
 "FZF layout
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'relative': v:true } }
