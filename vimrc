@@ -30,10 +30,10 @@ set encoding=utf-8
 set scrolloff=8
 set noshowmode "Turn off old mode line, using airline now
 set signcolumn=yes
+set updatetime=300 "update faster
 
 "turn syntax on 
 syntax on
-
 
 "Number lines return to normal value when in insert mode
 ":augroup numbertoggle
@@ -73,6 +73,9 @@ call plug#begin('~/.vim/plugged')
 
     "Jinja support for vim
     Plug 'lepture/vim-jinja'
+    
+    "Make commenting nice
+    Plug 'tpope/vim-commentary'
 call plug#end()
 
 "Sexy colorscheme
@@ -80,6 +83,9 @@ colorscheme gruvbox
 
 "Line number coloring stuff
 highlight LineNr ctermfg=grey ctermbg=Black
+highlight CursorLineNr term=bold 
+set cursorline
+set cursorlineopt=number
 
 "Set space to leader
 let mapleader=" "
@@ -87,6 +93,10 @@ let mapleader=" "
 "Use tab/S-tab for Coc
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)nmap <silent> gd <Plug>(coc-definition)
 
 "Make netrw not suck 
 let g:netrw_browse_split = 4
