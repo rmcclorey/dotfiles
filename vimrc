@@ -76,6 +76,9 @@ call plug#begin('~/.vim/plugged')
     
     "Make commenting nice
     Plug 'tpope/vim-commentary'
+
+    "html macro thing
+    Plug 'mattn/emmet-vim'
 call plug#end()
 
 "Sexy colorscheme
@@ -104,6 +107,10 @@ let g:netrw_banner = 0
 let g:netrw_winsize = 0
 let g:netrw_liststyle=3
 
+"termdebug stuff
+packadd termdebug
+let g:termdebug_wide=1
+
 "Syntax checker settings
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -114,6 +121,8 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
 
+"remap emmet expand macro key
+let g:user_emmet_leader_key='<C-x>'
 
 "html close tag
 noremap <leader>ct yypa/<ESC>k
